@@ -8,7 +8,7 @@ import io
 import re
 
 # Initialize Gemini Client
-client = genai.Client(api_key="API_KEY")
+client = genai.Client(api_key=st.secrets["API_KEY"])
 
 # Set wide layout
 st.set_page_config(layout="wide", page_title="Stuilder")
@@ -101,7 +101,7 @@ with col2:
         else:
             with st.spinner("AI Cleaning & Compiling..."):
                 prompt = f"Professional Game Manual Editor. Title: {st.session_state.comp_title}. Text: {st.session_state.rulebook_content}"
-                response = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+                response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
                 
                 doc = Document()
                 doc.add_heading(st.session_state.comp_title or "Game Title", 0)
